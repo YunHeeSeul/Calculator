@@ -1,12 +1,11 @@
-package Ex;
+package Submit;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.*;
-import java.awt.Panel;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -17,7 +16,6 @@ public class MainFrame extends JFrame implements ActionListener{
     private JPanel whole, p1, p2, p3, p4, p5, p6, p7, top, bottom;
     private JButton[] buttons;  //16개의 버튼 배열 생성
     private WindowHandler windowHandler;
-    private String result;//결과
 
     StringBuffer sb = new StringBuffer();
     DecimalFormat df = new DecimalFormat("#.###");
@@ -31,24 +29,24 @@ public class MainFrame extends JFrame implements ActionListener{
 
         //폰트
         Font fButton = new Font("나눔고딕",Font.BOLD,20);
-        Font fInput = new Font("Arial",Font.BOLD,30);
-        Font fOutput = new Font("Arial",Font.ITALIC,40);
+        Font fInput = new Font("나눔고딕",Font.BOLD,20);
+        Font fOutput = new Font("나눔고딕",Font.BOLD,30);
 
         //패널 만들기. 계산기가 그려지는
         whole = new JPanel(); //모든 패널을 합칠 최종 패널
-        //whole.setBackground(Color.BLACK);
+        whole.setBackground(Color.BLACK);
 
-        p1 = new JPanel();   //output
+        p1 = new JPanel();   //input
         p1.setLayout(new GridLayout(1,1,0,0));
-        p1.setBackground(Color.getHSBColor(0,0,75));
-        //p1.setForeground(Color.getHSBColor((float) 0, 0.0F, (float) 12.5));
-        p1.setFont(fOutput);
+        p1.setBackground(Color.darkGray);
+        p1.setForeground(Color.LIGHT_GRAY);
+        p1.setFont(fInput);
 
-        p2 = new JPanel();   //input
+        p2 = new JPanel();   //output
         p2.setLayout(new GridLayout(1,1,0,0));
-        p2.setBackground(Color.getHSBColor((float) 0, 0.0F, (float) 12.5));
-        //p2.setForeground(Color.getHSBColor(0,0,75));
-        p2.setFont(fInput);
+        p2.setBackground(Color.darkGray);
+        p2.setForeground(Color.WHITE);
+        p2.setFont(fOutput);
 
         p3 = new JPanel();   //<- , C 버튼
         p3.setLayout(new GridLayout(1,2,0,0));
@@ -67,21 +65,17 @@ public class MainFrame extends JFrame implements ActionListener{
 
         top = new JPanel(); //input&output
         top.setLayout(new GridLayout(2,1,1,1));
-        top.setBackground(Color.BLACK);
+        top.setBackground(Color.lightGray);
 
         bottom = new JPanel(); //buttons
         bottom.setLayout(new GridLayout(5,1,0,0));
         bottom.setBackground(Color.BLACK);
 
         //input&output label
-        outputL=new JLabel("",JLabel.RIGHT);
-        outputL.setFont(fOutput);
-        outputL.setForeground(Color.getHSBColor((float) 0, 0.0F, (float) 12.5));
-        p1.add(outputL); //p1에 output 라벨 넣어줌
-        inputL=new JLabel("",JLabel.RIGHT);
-        inputL.setFont(fInput);
-        inputL.setForeground(Color.getHSBColor(0,0,75));
-        p2.add(inputL); //p2에 input 라벨 넣어줌
+        inputL=new JLabel();
+        p1.add(inputL); //p1에 input 라벨 넣어줌
+        outputL=new JLabel();
+        p2.add(outputL); //p2에 output 라벨 넣어줌
 
         //input&output panel
         top.add(p1);top.add(p2);
@@ -114,60 +108,29 @@ public class MainFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getActionCommand()=="="){
+        if(e.getActionCommand()=="1"){sb.append(1);}
+        else if(e.getActionCommand()=="2"){sb.append(2);}
+        else if(e.getActionCommand()=="3"){sb.append(3);}
+        else if(e.getActionCommand()=="4"){sb.append(4);}
+        else if(e.getActionCommand()=="5"){sb.append(5);}
+        else if(e.getActionCommand()=="6"){sb.append(6);}
+        else if(e.getActionCommand()=="7"){sb.append(7);}
+        else if(e.getActionCommand()=="8"){sb.append(8);}
+        else if(e.getActionCommand()=="9"){sb.append(9);}
+        else if(e.getActionCommand()=="0"){sb.append(0);}
+        else if(e.getActionCommand()=="+"){sb.append("+");}
+        else if(e.getActionCommand()=="-"){sb.append("-");}
+        else if(e.getActionCommand()=="*"){sb.append("*");}
+        else if(e.getActionCommand()=="/"){sb.append("/");}
+        else if(e.getActionCommand()=="."){sb.append(".");}
+        else if(e.getActionCommand()=="<-"){sb.deleteCharAt(sb.length()-1);}//맨 마지막 문자 지우기
+        else if(e.getActionCommand()=="C"){sb.delete(0,sb.length()-1);}//전체 지우기
+        else if(e.getActionCommand()=="="){
             sb.append("=");
             try {
-                if(outputL.getText().equals("")){//아무것도 안 한 상태라면
-                    result=this.calculator.compute(sb.toString());
-                    sb.delete(0,sb.length());//초기화
-                    sb.append(result);
-                    outputL.setText(result); //결과 출력
-                }//이미 계산을 했던 상태라면 변화 없음
+                this.calculator.compute();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
-            }
-        }
-
-        if(e.getActionCommand()=="1"){sb.append(1); inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="2"){sb.append(2); inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="3"){sb.append(3);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="4"){sb.append(4);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="5"){sb.append(5);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="6"){sb.append(6);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="7"){sb.append(7);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="8"){sb.append(8);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="9"){sb.append(9);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="0"){sb.append(0);  inputL.setText(sb.toString());}
-        else if(e.getActionCommand()=="."){
-            if(sb.indexOf(".")==-1){//이전에 .을 입력한 적이 없는 경우
-                sb.append(".");
-                inputL.setText(sb.toString());
-            }
-        }
-        else if(e.getActionCommand()=="<-"){//맨 마지막 문자 지우기
-            sb.deleteCharAt(sb.length()-1);
-            inputL.setText(sb.toString());
-        }
-        else if(e.getActionCommand()=="C"){//전체 지우기
-            sb.delete(0,sb.length());//여태까지 입력한 문자열 지우기
-            inputL.setText(sb.toString());
-            outputL.setText(sb.toString());
-        }else{//연산자를 클릭한 경우
-            if(!outputL.equals("")) {//이미 계산된 적 있는 경우라면
-                inputL.setText(sb.toString());//inputL에 이전 결과를 넣어줌
-            }
-            if (e.getActionCommand() == "+") {
-                sb.append("+");
-                inputL.setText(sb.toString());
-            } else if (e.getActionCommand() == "-") {
-                sb.append("-");
-                inputL.setText(sb.toString());
-            } else if (e.getActionCommand() == "*") {
-                sb.append("*");
-                inputL.setText(sb.toString());
-            } else if (e.getActionCommand() == "/") {
-                sb.append("/");
-                inputL.setText(sb.toString());
             }
         }
     }
@@ -177,6 +140,9 @@ public class MainFrame extends JFrame implements ActionListener{
         //this.panel.initialize();
         //this.toolBar.initialize(this.panel);
     }
+
+
+
     private class WindowHandler implements WindowListener{
         @Override
         public void windowOpened(WindowEvent e) {}
@@ -193,4 +159,5 @@ public class MainFrame extends JFrame implements ActionListener{
         @Override
         public void windowDeactivated(WindowEvent e) {}
     }
+
 }

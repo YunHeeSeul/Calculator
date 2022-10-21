@@ -1,4 +1,4 @@
-package Ex;
+package Submit;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Calculator {
         return result;
     }
 
-    public String compute(String input) throws IOException {
+    public void compute() throws IOException {
 
         while (true) {
             int operand = 0;
@@ -54,7 +54,7 @@ public class Calculator {
                 }
             }
             if(a.equals(72)||a.equals(40))
-                return null;
+                return;
         }
     }
 }
