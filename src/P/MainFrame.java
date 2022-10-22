@@ -1,12 +1,11 @@
-package Ex;
+package P;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.*;
-import java.awt.Panel;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -18,9 +17,8 @@ public class MainFrame extends JFrame implements ActionListener{
     private JButton[] buttons;  //16개의 버튼 배열 생성
     private WindowHandler windowHandler;
     private String result;//결과
-
     StringBuffer sb = new StringBuffer();
-    DecimalFormat df = new DecimalFormat("#.###");
+
     //constructor
     public MainFrame(){
         this.setTitle("ASCII/INT/FLOAT 계산기");
@@ -28,6 +26,8 @@ public class MainFrame extends JFrame implements ActionListener{
         this.addWindowListener(windowHandler);
         this.setSize(400,600);//사이즈 지정해주기
         this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
+
+        this.calculator=new Calculator();
 
         //폰트
         Font fButton = new Font("나눔고딕",Font.BOLD,20);
