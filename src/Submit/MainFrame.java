@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
@@ -46,7 +45,6 @@ public class MainFrame extends JFrame{
 
         p2 = new JPanel();   //input
         p2.setLayout(new GridLayout(1,1,0,0));
-        //p2.setBackground(Color.getHSBColor((float) 0, 0.0F, (float) 12.5));
         p2.setBackground(Color.DARK_GRAY);
         p2.setFont(fInput);
 
@@ -76,12 +74,10 @@ public class MainFrame extends JFrame{
         //input&output label
         outputL=new JLabel("",JLabel.RIGHT);
         outputL.setFont(fOutput);
-        //outputL.setForeground(Color.getHSBColor((float) 0, 0.0F, (float) 12.5));
         outputL.setForeground(Color.DARK_GRAY);
         p1.add(outputL); //p1에 output 라벨 넣어줌
         inputL=new JLabel("",JLabel.RIGHT);
         inputL.setFont(fInput);
-        //inputL.setForeground(Color.getHSBColor(0,0,75));
         inputL.setForeground(Color.getHSBColor(254,26,100));
         p2.add(inputL); //p2에 input 라벨 넣어줌
 
@@ -160,7 +156,6 @@ public class MainFrame extends JFrame{
                     m=sb.toString();
                     sb.delete(0,sb.length());//초기화
                     sb.append(m);
-                    //inputL.setText(result); //결과 출력
                 }
                 if (e.getActionCommand() == "+") {
                     sb.append("+");

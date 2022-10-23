@@ -1,5 +1,4 @@
 package Submit;
-
 import java.io.IOException;
 
 public class CalculatorS {
@@ -8,10 +7,10 @@ public class CalculatorS {
         double op1 = (double) operand1;
         double op2 = (double) operand2;
 
-        double rf=0;
+        float rf=0;
         if (op==-1) {
-            rf = op1/op2;
-            String s = Double.toString(rf);    //문자열로 형변환
+            rf = (float)(op1/op2);
+            String s = Float.toString(rf);    //문자열로 형변환
             String r = getString(s);
             return s;
         }
@@ -25,8 +24,8 @@ public class CalculatorS {
             }else if (op==46) {
                 result = (int) Math.pow(operand1,operand2);
             } else if (op==66) {
-                rf= Math.sqrt(op1);
-                String s = Double.toString(rf);    //문자열로 형변환
+                rf= (float)(Math.sqrt(op1));
+                String s = Float.toString(rf);    //문자열로 형변환
                 String r = getString(s);    //아스키
                 return s;
             }
@@ -42,10 +41,10 @@ public class CalculatorS {
         double op1 = (double) operand1;
         double op2 = (double) operand2;
 
-        double rf=0;
+        float rf=0;
         if (op==-1) {
-            rf = op1/op2;
-            String s = Double.toString(rf);    //문자열로 형변환
+            rf = (float)(op1/op2);
+            String s = Float.toString(rf);    //문자열로 형변환
             String r = getString(s);    //아스키
             return s;
         }
@@ -58,8 +57,8 @@ public class CalculatorS {
         } else if (op==46) {
             result = (float) Math.pow(operand1,operand2);
         } else if (op==66) {
-            rf= Math.sqrt(op1);
-            String s = Double.toString(rf);    //문자열로 형변환
+            rf= (float)(Math.sqrt(op1));
+            String s = Float.toString(rf);    //문자열로 형변환
             String r = getString(s);    //아스키
             return s;
         }
@@ -167,5 +166,4 @@ public class CalculatorS {
     }
 
 }
-
 

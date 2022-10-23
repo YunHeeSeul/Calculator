@@ -1,5 +1,4 @@
 package Submit;
-
 import java.io.IOException;
 
 public class CalculatorC {
@@ -8,12 +7,12 @@ public class CalculatorC {
         int result=0;
         double op1 = (double) operand1;
         double op2 = (double) operand2;
-        double rf=0;
 
+        float rf=0;
         if (op==-1) {
-            rf = op1/op2;
-            String s = Double.toString(rf);    //문자열로 형변환
-            String r = getString(s);    //아스키
+            rf = (float)(op1/op2);
+            String s = Float.toString(rf);    //문자열로 형변환
+            String r = getString(s);
             return r;
         }
         else {
@@ -26,8 +25,8 @@ public class CalculatorC {
             } else if (op==46) {
                 result = (int) Math.pow(operand1,operand2);
             } else if (op==66) {
-                rf= Math.sqrt(op1);
-                String s = Double.toString(rf);    //문자열로 형변환
+                rf= (float)(Math.sqrt(op1));
+                String s = Float.toString(rf);    //문자열로 형변환
                 String r = getString(s);    //아스키
                 return r;
             }
@@ -38,13 +37,14 @@ public class CalculatorC {
     }
     public String calculateF(int op, float operand1, float operand2) {
         float result=0;
+
         double op1 = (double) operand1;
         double op2 = (double) operand2;
 
-        double rf=0;
+        float rf=0;
         if (op==-1) {
-            rf = op1/op2;
-            String s = Double.toString(rf);    //문자열로 형변환
+            rf = (float)(op1/op2);
+            String s = Float.toString(rf);    //문자열로 형변환
             String r = getString(s);    //아스키
             return r;
         }else if (op==-5) {
@@ -56,8 +56,8 @@ public class CalculatorC {
         } else if (op==46) {
             result = (float) Math.pow(operand1,operand2);
         } else if (op==66) {
-            rf= Math.sqrt(op1);
-            String s = Double.toString(rf);    //문자열로 형변환
+            rf= (float)(Math.sqrt(op1));
+            String s = Float.toString(rf);    //문자열로 형변환
             String r = getString(s);    //아스키
             return r;
         }
@@ -90,7 +90,7 @@ public class CalculatorC {
 
             byte[] b = new byte[30];
 
-            System.out.println("계산할 숫자를 입력하세요. [X,x 입력 시 프로그램은 종료됩니다!!]");
+            System.out.println("계산할 숫자를 입력하세요. [X,x,enter키 입력 시 프로그램은 종료됩니다!!]");
             System.in.read(b);
             String input = new String(b);
             byte[] ba = input.getBytes();
@@ -101,10 +101,10 @@ public class CalculatorC {
                 ia[i] = ba[i] - 48;
                 if (ia[i] == -2)
                     t = true;
-                if (ia[i] == 40 || ia[i] == 72|| ia[i]==-45) {
-                    System.out.println("프로그램 종료!!!");
-                    System.exit(0);
-                }
+            }
+            if (ia[0] == 40 || ia[0] == 72|| ia[0]==-38 || ia[0]==-35) {
+                System.out.println("프로그램 종료!!!");
+                System.exit(0);
             }
             if (t) { //.이 포함된 경우.
                 for (int i = 0; i < ia.length; i++) {  //문자열 끝날 때까지 반복
