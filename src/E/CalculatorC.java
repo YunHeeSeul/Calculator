@@ -22,6 +22,10 @@ public class CalculatorC {
                 result = operand1 - operand2;
             } else if (op == -6) {
                 result = operand1 * operand2;
+            } else if (op==46) {
+                result = (int) Math.pow(operand1,operand2);
+            } else if (op==66) {
+                result= (int) Math.sqrt(operand1);
             }
             String s = Integer.toString(result);    //문자열로 형변환
             String r = getString(s);
@@ -30,8 +34,16 @@ public class CalculatorC {
     }
     public String calculateF(int op, float operand1, float operand2) {
         float result=0;
+        double op1 = (double) operand1;
+        double op2 = (double) operand2;
 
-        if (op==-5) {
+        double rf=0;
+        if (op==-1) {
+            rf = op1/op2;
+            String s = Double.toString(rf);    //문자열로 형변환
+            String r = getString(s);    //아스키
+            return s;
+        }else if (op==-5) {
             result = operand1 + operand2;
         } else if (op==-3) {
             result = operand1 - operand2;
@@ -39,6 +51,12 @@ public class CalculatorC {
             result = operand1 * operand2;
         } else if (op==-1) {
             result = operand1 / operand2;
+        } else if (op==46) {
+            result = (float) Math.pow(operand1,operand2);
+        }else if (op==46) {
+            result = (float) Math.pow(operand1,operand2);
+        } else if (op==66) {
+            result= (float) Math.sqrt(operand1);
         }
         String s = Float.toString(result);    //문자열로 형변환
         String r = getString(s);
@@ -82,12 +100,12 @@ public class CalculatorC {
                         t = true;
                     if (ia[i] == 40 || ia[i] == 72) {
                         System.out.println("프로그램 종료!!!");
-                        return;
+                        System.exit(0);
                     }
                 }
                 if (t) { //.이 포함된 경우.
                     for (int i = 0; i < ia.length; i++) {  //문자열 끝날 때까지 반복
-                        if (ia[i] == -5 || ia[i] == -3 || ia[i] == -6 || ia[i] == -1) { //연산자일 경우
+                        if (ia[i] == -5 || ia[i] == -3 || ia[i] == -6 || ia[i] == -1 ||ia[i] == 46|| ia[i] == 66) { //연산자일 경우
                             op = ia[i];    //연산자 저장
                             if(temp1==-1){
                                 operandF1 = (float) r;
@@ -131,7 +149,7 @@ public class CalculatorC {
                     System.out.println(result);
                 } else {
                     for (int i = 0; i < ia.length; i++) {  //문자열 끝날 때까지 반복
-                        if (ia[i] == -5 || ia[i] == -3 || ia[i] == -6 || ia[i] == -1) { //연산자일 경우
+                        if (ia[i] == -5 || ia[i] == -3 || ia[i] == -6 || ia[i] == -1 ||ia[i] == 46|| ia[i] == 66) { //연산자일 경우
                             op = ia[i];    //연산자 저장
                             operand1 = r; //연산자 입력되기 전까지의 숫자 저장
                             r = 0;    //r 초기화
